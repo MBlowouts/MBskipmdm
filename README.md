@@ -1,57 +1,53 @@
-# Bypass-MDM for MacOS 💻
+# Bypass-MDM for macOS 💻
 
-#### Prerequisites ⚠️
+Bypass MDM enrollment on macOS during setup with this simple script.
 
-- **It is advised to erase the hard-drive prior to starting.**
-- **It is advised to re-install MacOS using an external flash drive.**
-- **Device language needs to be set to English, it can be changed afterwards.**
+---
 
+## ⚠️ Prerequisites
 
-#### Follow steps below to bypass MDM setup during a fresh installation of MacOS
+- **It is advised to erase the hard drive prior to starting.**  
+- **It is advised to reinstall macOS using an external flash drive.**  
+- **Device language must be set to English (can be changed later).**  
+- **Ensure you are connected to a WiFi network to activate the Mac.**  
 
-> Upon arriving to the setup stage of forced MDM enrollement:
+---
 
-1. Long press Power button to forcefully shut down your Mac.
+## 🚀 Steps to Bypass MDM Enrollment
 
-2. Hold the power button to start your Mac & boot into recovery mode.
+> When you reach the forced MDM enrollment setup screen:
 
-> a. **Apple-based Mac**: Hold Power button.\
-> b. **Intel-based Mac**: Hold <kbd>CMD</kbd> + <kbd>R</kbd> during boot.
+1. **Force shut down** your Mac by long-pressing the **Power** button.  
+2. **Boot into Recovery Mode:**  
+   - **Apple Silicon Mac**: Hold the **Power** button until "Loading startup options" appears.  
+   - **Intel Mac**: Hold **<kbd>CMD</kbd> + <kbd>R</kbd>** during boot until you see the Apple logo.  
+3. **Ensure you're connected to WiFi** (required for activation).  
+4. **Open Safari** from the macOS Utilities menu.  
+5. **Copy the following command:**
 
-3. Connect to WiFi to activate your Mac.
+   ```zsh
+   curl https://raw.githubusercontent.com/MBlowouts/MBskipmdm/main/bypass-mdm.sh -o bypass-mdm.sh && chmod +x ./bypass-mdm.sh && ./bypass-mdm.sh
 
-4. Enter Recovery Mode & Open Safari.
+Launch Terminal (Utilities > Terminal).
+Paste the command (<kbd>CMD</kbd> + <kbd>V</kbd>) and run it (<kbd>ENTER</kbd>).
+Follow the script prompts:
+Press 1 for Auto-Bypass.
+Press ENTER to use the default username (Apple).
+Press ENTER to use the default password (1234).
+Wait for the script to complete, then reboot your Mac.
+Sign in with:
+Username: Apple
+Password: 1234
+Skip all setup screens (Apple ID, Siri, Touch ID, Location Services).
+Once on the desktop, navigate to:
+System Settings > Users & Groups, and create your real admin account.
+Log out of the Apple profile and sign in to your real admin account.
+Set up macOS properly (Apple ID, Siri, Touch ID, Location Services).
+Delete the temporary Apple profile from System Settings > Users & Groups.
+🎉 Congratulations, you're MDM-free! 💫
 
-6. Copy the script below:
+❗ Important Notes
 
-```zsh
-curl https://raw.githubusercontent.com/MBlowouts/MBskipmdm/main/bypass-mdm.sh -o bypass-mdm.sh && chmod +x ./bypass-mdm.sh && ./bypass-mdm.sh
-```
-
-7. Launch Terminal (Utilities > Terminal).
-
-8. Paste (<kbd>CMD</kbd> + <kbd>V</kbd>) and Run the script (<kbd>ENTER</kbd>).
-
-9. Input 1 for Autobypass.
-
-10. Press Enter to leave the default username 'Apple'.
-
-11. Press Enter to leave the default  password '1234'.
-
-12. Wait for the script to finish & Reboot your Mac.
-
-13. Sign in with user (Apple) & password (1234)
-
-14. Skip all setup (Apple ID, Siri, Touch ID, Location Services)
-
-15. Once on the desktop navigate to System Settings > Users and Groups, and create your real Admin account.
-
-16. Log out of the Apple profile, and sign in into your real profile.
-
-17. Feel free set up properly now (Apple ID, Siri, Touch ID, Location Services).
-
-18. Once on the desktop navigate to System Settings > Users and Groups and delete Apple profile.
-
-19. Congratulations, you're MDM free! 💫
-
-### Although it's virtually impossible to catch that you've removed the MDM (because it wasn't even configured), be aware that the serial number of the laptop will still be shown in the inventory system of your company. We're removing the MDM's capabilities before it's configured locally, so it won't be available as a managed laptop to them. Use with caution. Probably a good idea to have a valid excuse as well.
+This script removes MDM capabilities before they are configured, making it undetectable locally.
+However, your Mac’s serial number will still be visible in the company's MDM inventory system.
+Use at your own risk. If questioned, have a valid excuse ready.
